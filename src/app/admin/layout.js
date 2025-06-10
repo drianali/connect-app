@@ -15,13 +15,13 @@ export default function AdminLayout({ children }) {
         <h1 className="text-3xl font-bold text-center">Connect</h1>
         <div className="flex flex-col gap-3 mt-15">
           <a
-            href="http://localhost:3000/admin/users"
+            href="/admin/users"
             className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
           >
             <IconUser /> Users
           </a>
           <a
-            href="http://localhost:3000/admin/roles"
+            href="/admin/roles"
             className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
           >
             <IconUserCog /> Hak akses
