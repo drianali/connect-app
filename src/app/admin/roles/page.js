@@ -21,7 +21,7 @@ export default function RolesPage() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Nomor</TableHead>
+            <TableHead>Nomor</TableHead>
             <TableHead className="text-center">Hak Akses</TableHead>
             <TableHead className="text-right">Action</TableHead>
           </TableRow>

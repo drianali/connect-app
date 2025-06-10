@@ -33,9 +33,6 @@ export default function UserPages() {
           ))}
         </div>
       </section>
-      <button className="fixed right-5 bottom-5 w-[42px] h-[42px] rounded-lg text-[26px] bg-[#e0e0e0] cursor-pointer">
-        +
-      </button>
     </div>
   );
 }

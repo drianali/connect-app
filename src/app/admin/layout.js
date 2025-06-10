@@ -14,7 +14,25 @@ export default function AdminLayout({ children }) {
       >
         <h1 className="text-3xl font-bold text-center">Connect</h1>
         <div className="flex flex-col gap-3 mt-15">
-          <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
+          <a
+            href="http://localhost:3000/admin/users"
+            className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
+          >
+            <IconUser /> Users
+          </a>
+          <a
+            href="http://localhost:3000/admin/roles"
+            className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
+          >
+            <IconUserCog /> Hak akses
+          </a>
+          <a
+            href="http://localhost:3000/"
+            className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
+          >
+            <IconLogout2 /> Logout
+          </a>
+          {/* <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
             <IconUser /> Users
           </button>
           <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
@@ -22,17 +40,18 @@ export default function AdminLayout({ children }) {
           </button>
           <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
             <IconLogout2 /> Logout
-          </button>
+          </button> */}
         </div>
       </section>
       <section
         id="content"
         className="bg-white w-[85%] flex-1 p-[30px] overflow-y-auto"
       >
-        <div className="flex flex-col gap-4">
-          {children}
-        </div>
+        <div className="flex flex-col gap-4">{children}</div>
       </section>
+      <button className="fixed right-5 bottom-5 w-[42px] h-[42px] rounded-lg text-[27px] bg-[#e0e0e0] cursor-pointer">
+        +
+      </button>
     </div>
-  )
-};
+  );
+}
