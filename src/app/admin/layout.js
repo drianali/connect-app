@@ -1,5 +1,6 @@
 import {
   IconLogout2,
+  IconNews,
   IconUser,
   IconUserBolt,
   IconUserCog,
@@ -14,7 +15,7 @@ export default function AdminLayout({ children }) {
       >
         <h1 className="text-3xl font-bold text-center">Connect</h1>
         <div className="flex flex-col gap-3 mt-15">
-          <a
+          {/* <a
             href="/admin/users"
             className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
           >
@@ -31,16 +32,19 @@ export default function AdminLayout({ children }) {
             className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
           >
             <IconLogout2 /> Logout
-          </a>
-          {/* <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
+          </a> */}
+          <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
             <IconUser /> Users
           </button>
           <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
             <IconUserCog /> Hak akses
           </button>
           <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
+            <IconNews /> Berita
+          </button>
+          <button className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold">
             <IconLogout2 /> Logout
-          </button> */}
+          </button>
         </div>
       </section>
       <section
