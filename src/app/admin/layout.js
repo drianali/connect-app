@@ -34,7 +34,7 @@ export default function AdminLayout({ children }) {
             <IconNews /> Berita
           </a>
           <a
-            href="http://localhost:3000/"
+            href="/login"
             className="p-2.5 text-left text-base cursor-pointer flex items-center gap-2 rounded-lg font-bold"
           >
             <IconLogout2 /> Logout
