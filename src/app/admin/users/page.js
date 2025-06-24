@@ -1,5 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabaseClient";
+import { useEffect, useState } from "react";
+
 import UserCard from "@/components/ui/user-card";
 import { dataUser } from "@/mock/data-user";
 import {
@@ -11,6 +15,25 @@ import {
 import useSWR from "swr";
 
 export default function UserPages() {
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const getSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session) router.push("/login");
+      else setUser(session.user);
+    };
+    getSession();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/login");
+  };
+
   const data = dataUser;
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -39,10 +62,7 @@ export default function UserPages() {
 
   return (
     <div id="container" className="flex h-[100vh] text-black">
-      <section
-        id="content"
-        className="bg-white w-[85%] flex-1 p-[30px]"
-      >
+      <section id="content" className="bg-white w-[85%] flex-1 p-[30px]">
         <input
           type="search"
           placeholder="Cari User"
