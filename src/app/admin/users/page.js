@@ -1,8 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import React from "react";
+import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabaseClient";
-import { useEffect, useState } from "react";
 
 import UserCard from "@/components/ui/user-card";
 import { dataUser } from "@/mock/data-user";
@@ -15,25 +15,6 @@ import {
 import useSWR from "swr";
 
 export default function UserPages() {
-  const [user, setUser] = useState(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const getSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (!session) router.push("/login");
-      else setUser(session.user);
-    };
-    getSession();
-  }, []);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/login");
-  };
-
   const data = dataUser;
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
