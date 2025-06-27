@@ -13,8 +13,10 @@ import { Label } from "@radix-ui/react-label";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target[0]?.value;
@@ -32,7 +34,13 @@ const Login = () => {
 
     if (error) {
       toast.error(error.message || "Unable to sign in. Please try again");
+      return;
     }
+
+    await supabase.auth.signOut();
+
+    toast.success("Login Success");
+        router.push("/admin/users");
   };
 
   return (

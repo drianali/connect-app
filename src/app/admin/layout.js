@@ -33,7 +33,7 @@ export default function AdminLayout({ children }) {
         className="bg-white p-10 w-[220px] border-r flex flex-col"
       >
         <h1 className="text-3xl font-bold text-center">Connect</h1>
-        <Toaster position="top-right" />
+        <Toaster position="top-center" />
         <div className="flex flex-col gap-3 mt-15">
           <a
             href="/admin/users"
