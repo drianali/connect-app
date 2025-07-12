@@ -1,21 +1,13 @@
 "use client";
 
-import React from "react";
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
-
 import UserCard from "@/components/ui/user-card";
 import { dataUser } from "@/mock/data-user";
-import {
-  IconLogout2,
-  IconUser,
-  IconUserBolt,
-  IconUserCog,
-} from "@tabler/icons-react";
 import useSWR from "swr";
 
 export default function UserPages() {
-  const data = dataUser;
+  const [searchTerm, setSearchTerm] = useState("");
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const {
@@ -25,21 +17,16 @@ export default function UserPages() {
   } = useSWR(`https://jsonplaceholder.typicode.com/users`, fetcher);
 
   if (isLoading) {
-    return (
-      <div>
-        <p>Loading....</p>
-      </div>
-    );
+    return <div><p>Loading....</p></div>;
   }
   if (error) {
-    return (
-      <div>
-        <p>Gagal memuat data</p>
-      </div>
-    );
+    return <div><p>Gagal memuat data</p></div>;
   }
 
-  console.log(users);
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div id="container" className="flex h-[100vh] text-black">
@@ -48,9 +35,11 @@ export default function UserPages() {
           type="search"
           placeholder="Cari User"
           className="w-full p-3 border rounded-lg mb-7 text-base"
-        ></input>
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <div className="flex flex-col gap-4">
-          {users.map((employee, index) => (
+          {filteredUsers.map((employee, index) => (
             <UserCard
               key={index}
               fullname={employee.name}

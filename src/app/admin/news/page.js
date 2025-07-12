@@ -1,12 +1,13 @@
 "use client";
 
 import useSWR from "swr";
-import { dataUser } from "@/mock/data-user";
+import { useState } from "react";
 import PostCard from "@/components/post-card";
 
 export default function NewsPage() {
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
   const {
     data: posts,
@@ -21,6 +22,7 @@ export default function NewsPage() {
       </div>
     );
   }
+
   if (error) {
     return (
       <div>
@@ -29,7 +31,11 @@ export default function NewsPage() {
     );
   }
 
-  console.log(posts);
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.body.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <section id="News" className="bg-white w-[85%] flex-1 p-[30px]">
@@ -37,14 +43,16 @@ export default function NewsPage() {
           type="search"
           placeholder="Cari News"
           className="w-full p-3 border rounded-lg mb-7 text-base"
-        ></input>
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <div className="flex flex-col gap-4">
-          {posts.map((employee, index) => (
+          {filteredPosts.map((post, index) => (
             <PostCard
               key={index}
-              id={employee.id}
-              title={employee.title}
-              body={employee.body}
+              id={post.id}
+              title={post.title}
+              body={post.body}
             />
           ))}
         </div>
